@@ -66,11 +66,11 @@ public final class Main extends JFrame {
         listProduct = listProducttemp = es.productListSample();
         listCustomer = listCustomertemp = es.customerListSample();
         listOrder = es.orderListSample();
-        /*obt = new OrderBinaryTree();
-        for (int i = 0; i < listOrder.size(); i++) {
-            obt.insert(listOrder.get(i));
-        }
-        orders = obt.getPcodeArray();*/
+        obt = new OrderBinaryTree();
+        for (Order order : listOrder) {
+			obt.insert(order);
+		}
+        orders = obt.getPcodeArray();
     }
     
     public void openTableData() {
@@ -388,6 +388,7 @@ public final class Main extends JFrame {
 
     private void menuSortPcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSortPcodeActionPerformed
         resetOrderTree();
+        
         orders = obt.getPcodeArray();
         initOrderTable();
     }//GEN-LAST:event_menuSortPcodeActionPerformed
