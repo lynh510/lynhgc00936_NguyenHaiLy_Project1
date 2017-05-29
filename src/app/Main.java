@@ -66,11 +66,11 @@ public final class Main extends JFrame {
         listProduct = listProducttemp = es.productListSample();
         listCustomer = listCustomertemp = es.customerListSample();
         listOrder = es.orderListSample();
-        obt = new OrderBinaryTree();
+        /*obt = new OrderBinaryTree();
         for (int i = 0; i < listOrder.size(); i++) {
             obt.insert(listOrder.get(i));
         }
-        orders = obt.getPcodeArray();
+        orders = obt.getPcodeArray();*/
     }
     
     public void openTableData() {
@@ -322,8 +322,10 @@ public final class Main extends JFrame {
             model.getColumn(i).setCellRenderer(center);
         }
 
-        for (int i = 0; i < orders.length; i++) {
-            Order temp = (Order) orders[i];
+        Object[] ord = listOrder.toArray();
+        
+        for (int i = 0; i < ord.length; i++) {
+            Order temp = (Order) ord[i];
             String pcode = temp.getPcode();
             String ccode = temp.getCcode();
             int quantity = temp.getQuantity();

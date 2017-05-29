@@ -36,12 +36,12 @@ public class JsonParser {
     }
 
     public MyStack<Customer> json2C(BufferedReader br) {
-        MyStack<Customer> mc = parser.fromJson(br, new TypeToken<MyStack<Customer>>() {}.getType());
+        /*MyStack<Customer> mc = parser.fromJson(br, new TypeToken<MyStack<Customer>>() {}.getType());
         MyStack<Customer> _mc = new MyStack<>();
         for (int i = 0; i < mc.size(); i++) {
             _mc.push(mc.get(i));
-        }
-        return _mc;
+        }*/
+        return parser.fromJson(br, new TypeToken<MyStack<Customer>>() {}.getType());
     }
 
     public MyLinkedList<Order> json2O(BufferedReader br) {
