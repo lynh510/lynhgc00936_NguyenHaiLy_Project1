@@ -386,15 +386,88 @@ public final class Main extends JFrame {
 
     private void menuSortPcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSortPcodeActionPerformed
         resetOrderTree();
+        String col[] = { "Product Code", "Customer Code", "Quantity"};
+        DefaultTableModel dmo = new DefaultTableModel(col, 0) {
+            @Override
+            public Class getColumnClass(int col) {
+                switch (col) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return Integer.class;
+                    default:
+                        return Object.class;
+                }
+            }
+        };
         
-        orders = obt.getPcodeArray();
-        initOrderTable();
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        TableColumnModel model = oTable.getColumnModel();
+        for (int i = 0; i < col.length; i++) {
+            model.getColumn(i).setHeaderRenderer(new TableHeaderRenderer(oTable));
+            model.getColumn(i).setCellRenderer(center);
+        }
+
+        Object[] ord = obt.getPcodeArray();
+        
+        for (int i = 0; i < ord.length; i++) {
+            Order temp = (Order) ord[i];
+            String pcode = temp.getPcode();
+            String ccode = temp.getCcode();
+            int quantity = temp.getQuantity();
+            Object[] data = {pcode, ccode, quantity};
+            dmo.addRow(data);
+        }
+        oTable.setModel(dmo);
+        oTable.setRowHeight(25);
+        oTable.getTableHeader().setReorderingAllowed(false);
     }//GEN-LAST:event_menuSortPcodeActionPerformed
 
     private void menuSortCCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSortCCodeActionPerformed
         resetOrderTree();
-        orders = obt.getCcodeArray();
-        initOrderTable();
+        String col[] = { "Product Code", "Customer Code", "Quantity"};
+        DefaultTableModel dmo = new DefaultTableModel(col, 0) {
+            @Override
+            public Class getColumnClass(int col) {
+                switch (col) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return Integer.class;
+                    default:
+                        return Object.class;
+                }
+            }
+        };
+        
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        TableColumnModel model = oTable.getColumnModel();
+        for (int i = 0; i < col.length; i++) {
+            model.getColumn(i).setHeaderRenderer(new TableHeaderRenderer(oTable));
+            model.getColumn(i).setCellRenderer(center);
+        }
+
+        Object[] ord = obt.getCcodeArray();
+        
+        for (int i = 0; i < ord.length; i++) {
+            Order temp = (Order) ord[i];
+            String pcode = temp.getPcode();
+            String ccode = temp.getCcode();
+            int quantity = temp.getQuantity();
+            Object[] data = {pcode, ccode, quantity};
+            dmo.addRow(data);
+        }
+        oTable.setModel(dmo);
+        oTable.setRowHeight(25);
+        oTable.getTableHeader().setReorderingAllowed(false);
     }//GEN-LAST:event_menuSortCCodeActionPerformed
 
     private void oTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oTableMouseClicked
